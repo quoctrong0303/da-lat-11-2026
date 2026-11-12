@@ -1,0 +1,285 @@
+<title>Đà Lạt 13–16/11</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Lexend:wght@500;600;700&display=swap">
+<style>
+/* Layout: một cột hẹp như sổ tay đi đường; bản đồ sơ đồ ở đầu; thanh ngày dính; mỗi mốc là một dòng giờ | việc */
+:root{
+  --bg:#f2f5f1; --card:#ffffff; --fg:#1b2a23; --muted:#5d6e66; --line:#dbe3dc;
+  --pine:#2f5d4a; --pine-soft:#e3eee7; --pink:#c4577a; --pink-soft:#f8e6ec;
+  --mist:#4f7590; --mist-soft:#e3edf3; --amber:#9a6412; --amber-soft:#f8eedb;
+  --d1:#d07a2c; --d2:#2f7d5e; --d3:#4f7590; --d4:#c4577a;
+  --display:"Lexend",system-ui,sans-serif; --body:"Be Vietnam Pro",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111814; --card:#18211c; --fg:#e4ece6; --muted:#9aaba2; --line:#2a3630;
+  --pine:#7fc2a2; --pine-soft:#1f3229; --pink:#ee93b0; --pink-soft:#3a2129;
+  --mist:#9cc0d8; --mist-soft:#1d2c36; --amber:#e8b45c; --amber-soft:#352a17;
+  --d1:#eba25c; --d2:#6fc29d; --d3:#8db7d4; --d4:#ee93b0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111814; --card:#18211c; --fg:#e4ece6; --muted:#9aaba2; --line:#2a3630;
+  --pine:#7fc2a2; --pine-soft:#1f3229; --pink:#ee93b0; --pink-soft:#3a2129;
+  --mist:#9cc0d8; --mist-soft:#1d2c36; --amber:#e8b45c; --amber-soft:#352a17;
+  --d1:#eba25c; --d2:#6fc29d; --d3:#8db7d4; --d4:#ee93b0; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:760px;margin:0 auto;padding-block:28px 56px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--pink);outline-offset:2px;border-radius:4px}
+
+header h1{font-size:clamp(30px,7vw,44px);letter-spacing:-.02em;line-height:1.1}
+header h1 span{color:var(--pink)}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;color:var(--muted)}
+.fact b{color:var(--fg);font-weight:600}
+
+.bases{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.base{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-width:0}
+.base small{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.base b{font-family:var(--display);font-size:16px;display:block;margin:2px 0}
+.base span{font-size:13px;color:var(--muted)}
+.base.w{border-top:3px solid var(--pine)} .base.e{border-top:3px solid var(--mist)}
+
+.mapbox{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 12px 8px}
+.mapbox svg{display:block;width:100%;height:auto}
+.mapkey{display:flex;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--muted);padding:6px 4px 2px}
+.mapkey i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.maplbl{font-family:var(--body);font-size:11px;fill:var(--muted)}
+.mapbase{font-family:var(--display);font-size:11.5px;font-weight:600;fill:var(--fg)}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);margin-top:22px;padding-block:10px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:6px;border-bottom:1px solid var(--line)}
+nav a{text-decoration:none;text-align:center;border-radius:10px;padding:7px 4px;background:var(--card);border:1px solid var(--line);border-bottom-width:3px;font-size:13px;line-height:1.25}
+nav a b{display:block;font-family:var(--display);font-size:15px}
+nav a:hover{background:var(--bg)}
+
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px;font-size:12.5px;color:var(--muted)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:1px}
+
+section.day{margin-top:30px;scroll-margin-top:90px}
+.dayhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.dayhead h2{font-size:24px;letter-spacing:-.01em}
+.dayhead h2 em{font-style:normal;display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:2px}
+.dayhead .theme{color:var(--muted);font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tag{font-size:12px;font-weight:600;border-radius:6px;padding:3px 8px}
+.tag.sleep{background:var(--pink-soft);color:var(--pink)}
+.tag.west{background:var(--pine-soft);color:var(--pine)}
+.tag.east{background:var(--mist-soft);color:var(--mist)}
+.tag.move{background:var(--amber-soft);color:var(--amber)}
+
+ol.tl{list-style:none;margin:12px 0 0;padding:0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.tl li{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:11px 14px;border-top:1px solid var(--line)}
+.tl li:first-child{border-top:0}
+.t{font-variant-numeric:tabular-nums;font-size:13.5px;font-weight:600;color:var(--muted);padding-top:1px;white-space:nowrap}
+.body{min-width:0}
+.name{font-weight:600;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.name i{width:9px;height:9px;border-radius:50%;flex:none}
+.k-an i{background:#d98a3a} .k-cf i{background:#8a5a3c} .k-di i{background:var(--pine)} .k-sm i{background:var(--pink)} .k-ng i{background:var(--line);box-shadow:inset 0 0 0 1.5px var(--muted)}
+.k-ng .name{font-weight:500;color:var(--muted)}
+.addr{font-size:13px;color:var(--muted);margin-top:1px}
+.addr a{text-decoration:none;border-bottom:1px dotted var(--muted)}
+.addr a:hover{color:var(--pine);border-color:var(--pine)}
+.chk{font-size:11px;font-weight:600;color:var(--amber);background:var(--amber-soft);border-radius:5px;padding:1px 6px}
+.note{font-size:13px;margin-top:3px}
+li.hl{background:var(--pink-soft)}
+
+.box{margin-top:34px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.box h3{font-size:17px;margin-bottom:10px}
+.box ul{margin:0;padding-left:18px;display:grid;gap:5px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;background:var(--bg);text-decoration:none}
+a.chip:hover{border-color:var(--pine)}
+.chip.miss{border-style:dashed;color:var(--muted)}
+.grp{margin-top:10px} .grp small{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+footer{margin-top:22px;font-size:12.5px;color:var(--muted)}
+
+@media (max-width:520px){
+  .bases{grid-template-columns:1fr}
+  .tl li{grid-template-columns:1fr;gap:2px}
+  nav a{font-size:12px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Đà Lạt <span>13–16/11</span></h1>
+  <div class="facts">
+    <span class="fact"><b>4 ngày 3 đêm</b></span>
+    <span class="fact"><b>2 người</b> · 1 xe máy</span>
+    <span class="fact">Ăn sáng <b>15 phút</b> rồi đi cà phê</span>
+    <span class="fact">Dậy sớm <b>chỉ ngày săn mây</b></span>
+  </div>
+  <div class="bases">
+    <div class="base w"><small>Đêm 13 &amp; 14 · phía Tây</small><b>Cottage Retreat Dalat</b><span>34 Hoàng Văn Thụ</span></div>
+    <div class="base e"><small>Đêm 15 · phía Đông</small><b>Lengkeng Homestay</b><span>57/4 Hoàng Hoa Thám</span></div>
+  </div>
+  <div class="mapbox">
+    <svg id="map" viewBox="0 0 640 300" role="img" aria-label="Sơ đồ vị trí các điểm theo ngày"></svg>
+    <div class="mapkey">
+      <span><i style="background:var(--d1)"></i>13/11</span>
+      <span><i style="background:var(--d2)"></i>14/11</span>
+      <span><i style="background:var(--d3)"></i>15/11</span>
+      <span><i style="background:var(--d4)"></i>16/11</span>
+      <span>Ô vuông = homestay. Sơ đồ theo tọa độ thật, không có đường đi.</span>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="Chọn ngày">
+  <a href="#d1" style="border-bottom-color:var(--d1)"><b>13</b>Thứ 6</a>
+  <a href="#d2" style="border-bottom-color:var(--d2)"><b>14</b>Thứ 7</a>
+  <a href="#d3" style="border-bottom-color:var(--d3)"><b>15</b>CN</a>
+  <a href="#d4" style="border-bottom-color:var(--d4)"><b>16</b>Thứ 2</a>
+</nav>
+
+<div class="legend">
+  <span><i style="background:#d98a3a"></i>Ăn</span>
+  <span><i style="background:#8a5a3c"></i>Cà phê</span>
+  <span><i style="background:var(--pine)"></i>Tham quan</span>
+  <span><i style="background:var(--pink)"></i>Săn mây</span>
+  <span>Bấm địa chỉ để mở Google Maps</span>
+</div>
+
+<div id="days"></div>
+
+<div class="box">
+  <h3>Cần chốt trước khi đi</h3>
+  <ul>
+    <li><b>Xe máy:</b> thuê chỗ <b>giao xe ở Cottage, nhận lại ở Lengkeng</b>.</li>
+    <li><b>Lengkeng:</b> nhắn trước để gửi hành lý lúc 09:00 ngày 15.</li>
+    <li><b>Tsuki Spa:</b> đặt lịch trước cho 13:30 ngày 14.</li>
+    <li><b>Bún Loan</b> mở 6:30 và thường hết món khoảng 11–12h.</li>
+    <li><b>Ríu Rít</b> đóng cửa 17:00, <b>Lá Phong</b> đóng cửa 17:00.</li>
+    <li>Ngày 13, về khỏi đèo Tà Nung trước 17:00 vì trời tối khoảng 17:30.</li>
+    <li>Mây phụ thuộc thời tiết. Nếu tối trước đó dự báo mưa thì ngủ thêm, bỏ chặng săn mây.</li>
+  </ul>
+</div>
+
+<div class="box">
+  <h3>Kho dự phòng</h3>
+  <div class="grp"><small>Đã có địa chỉ</small><div class="chips" id="spare"></div></div>
+  <div class="grp"><small>Chưa tìm thấy trên Google Maps · gửi lại link TikTok để tôi tra</small><div class="chips">
+    <span class="chip miss">Khoai nướng Linh</span><span class="chip miss">Bánh căn Nhà Cổ</span><span class="chip miss">Hôm Nào Cà Phê</span><span class="chip miss">La Cà Phê</span><span class="chip miss">Tiệm cơm curry mochi</span><span class="chip miss">Chào hào Huỳnh Văn</span>
+  </div></div>
+</div>
+
+<footer>Địa chỉ và tọa độ lấy từ Google Maps ngày 10/11/2026. Giờ mở cửa lấy từ các bài review. Nên kiểm tra lại một ngày trước khi đi.</footer>
+</div>
+
+<script>
+const M = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+// [giờ, loại, tên, {a:địa chỉ, q:từ khóa Maps, p:[lat,lng]}, ghi chú, điểm nhấn]
+const COT={a:"34 Hoàng Văn Thụ",q:"Cottage Retreat Dalat",p:[11.940,108.424]};
+const LK={a:"57/4 Hoàng Hoa Thám",q:"LengKeng Da Lat Homestay",p:[11.936,108.464]};
+const DAYS = [
+ { id:"d1", c:"--d1", title:"Thứ 6 · 13/11", theme:"Cheo Veooo · Tà Nung",
+   tags:[["west","Ở Cottage"],["sleep","Ngủ trước 22:00"]],
+   rows:[
+   ["06:00","ng","Xe đến → trung chuyển về Cottage",COT,"Gửi hành lý, nhận xe máy"],
+   ["07:00","an","Vỹ Dạ Quán – bánh mì xíu mại",{a:"20a Nguyễn Chí Thanh",q:"Vỹ Dạ Quán bánh mì xíu mại Nguyễn Chí Thanh Đà Lạt",p:[11.941,108.436]}],
+   ["07:30","cf","Tiệm cà phê Cheo Veooo",{a:"116 Hùng Vương",q:"Tiệm cà phê Cheo veooo Đà Lạt",p:[11.938,108.482]},"Ngồi 1,5 tiếng, view đồi",true],
+   ["09:15","ng","Về Cottage nghỉ",null,"Ngủ bù sau chuyến xe đêm"],
+   ["10:45","an","Bún Loan (bún bò, mì Quảng)",{a:"4/4 Hoàng Văn Thụ",q:"Quán bún bò Huế Loan Đà Lạt",p:[11.939,108.429]},"Cạnh Cottage. Thường hết món lúc 11–12h"],
+   ["11:15","ng","Chạy đèo Tà Nung",null,"Khoảng 30 phút. Đổ đầy xăng trước khi đi"],
+   ["11:45","di","The Florest – Hoa trong rừng",{a:"Thôn 4, Tà Nung",q:"The Florest Hoa Trong Rừng Đà Lạt",p:[11.903,108.367]},"Ở 2 tiếng",true],
+   ["14:15","di","Floating Town",{a:"Tổ 4 Thôn 2, Tà Nung",q:"Floating Town Tà Nung Đà Lạt",p:[11.921,108.341]}],
+   ["15:00","cf","Dream Garden Coffee",{a:"Tà Nung, cạnh Floating Town",q:"Dream Garden Coffee Tà Nung",p:[11.922,108.338]}],
+   ["16:15","ng","Về Cottage",null,"Qua đèo trước khi trời tối"],
+   ["18:30","an","Lẩu gà lá é Cao Phụng",{a:"1O/2KQH Hoàng Văn Thụ",q:"Lẩu gà lá é Cao Phụng Đà Lạt",p:[11.937,108.428]},"Đi bộ từ Cottage"],
+   ["20:00","an","Chân gà nướng TN",{a:"16B Hoàng Văn Thụ (cuối hẻm)",q:"Chân gà nướng TN Hoàng Văn Thụ Đà Lạt",p:[11.940,108.426]},"Ăn vặt cạnh Cottage"],
+   ["21:30","ng","Ngủ sớm",null,"Mai dậy 04:45"],
+ ]},
+ { id:"d2", c:"--d2", title:"Thứ 7 · 14/11", theme:"Măng Lin · Cam Ly · hoàng hôn",
+   tags:[["west","Ở Cottage"],["sleep","Dậy 04:45"]],
+   rows:[
+   ["05:15","sm","Đồi cỏ hồng Măng Lin",{a:"Đồi Mả Thánh, Măng Lin",q:"Đồi cỏ hồng Măng Lin",p:[11.984,108.391]},"Bình minh, sương, cỏ hồng tháng 11",true],
+   ["07:15","an","Bánh ướt lòng gà Long Chuyên",{a:"Hẻm 202 Phan Đình Phùng",q:"Bánh ướt lòng gà LONG CHUYÊN Đà Lạt",p:[11.948,108.436]},"Mở từ 7:00"],
+   ["07:45","ng","Về Cottage ngủ bù"],
+   ["10:15","cf","Thị trấn Iyashi",{a:"868 Cam Ly",q:"Thị trấn iyashi Đà Lạt",p:[11.958,108.397]}],
+   ["11:15","di","Nông trại cún Puppy Farm",{a:"Cam Ly, Măng Lin",q:"Nông Trại Cún Puppy Farm Đà Lạt",p:[11.963,108.388]},"Cùng đường Cam Ly với Iyashi"],
+   ["12:15","an","Bánh canh Dốc Đá",{a:"175 Phù Đổng Thiên Vương",q:"Bánh canh Dốc Đá Đà Lạt",p:[11.964,108.443]}],
+   ["13:30","di","Tsuki Spa",{a:"2 Nam Kỳ Khởi Nghĩa",q:"Tsuki Spa Hotel & Cafe Đà Lạt",p:[11.942,108.435]},"Massage, gội đầu. Đặt lịch trước"],
+   ["15:00","di","Khu du lịch Lá Phong",{a:"45 Đặng Thái Thân",q:"Khu du lịch Lá Phong Đà Lạt",p:[11.928,108.451]},"Đóng cửa 17:00"],
+   ["16:00","cf","Hap Hap Riverside Kitchen",{a:"Hẻm 4 Đặng Thái Thân",q:"Hap Hap Riverside Kitchen Đà Lạt",p:[11.924,108.453]},"Cách Lá Phong 300 m"],
+   ["16:45","cf","420 Sunset Cocktail Bar",{a:"Đống Đa",q:"420 Sunset cocktail bar DaLat",p:[11.923,108.440]},"Ngắm hoàng hôn, mở từ 16:20",true],
+   ["18:30","an","Lẩu cá tầm Ngư Sơn",{a:"34 Trần Nhật Duật",q:"Lẩu cá tầm Ngư Sơn Đà Lạt",p:[11.944,108.429]}],
+   ["20:00","an","Hạnh Sữa Việt Anh",{a:"4 Hải Thượng",q:"Sữa Đậu Nành Hạnh Sữa Việt Anh Đà Lạt",p:[11.941,108.431]}],
+   ["20:30","an","Anh Chú Bán Bắp",{a:"203/4 Phan Đình Phùng",q:"Anh Chú Bán Bắp Đà Lạt",p:[11.947,108.435]},"Đêm nay ngủ thoải mái"],
+ ]},
+ { id:"d3", c:"--d3", title:"CN · 15/11", theme:"Đổi homestay · Trại Mát · Ríu Rít",
+   tags:[["move","Chuyển sang Lengkeng"],["east","Ở Lengkeng"],["sleep","Ngủ trước 22:00"]],
+   rows:[
+   ["08:00","ng","Dậy, trả phòng Cottage",COT],
+   ["08:20","an","Bánh mì xíu mại 79",{a:"119C Nguyễn Văn Trỗi",q:"Bánh mì xíu mại 79 Nguyễn Văn Trỗi Đà Lạt"},"Trên đường sang Lengkeng"],
+   ["09:00","ng","Gửi hành lý ở Lengkeng",LK],
+   ["09:15","cf","Cây Cam Ngọt",{a:"Hẻm 57 Khe Sanh",q:"Cây Cam Ngọt Khe Sanh Đà Lạt",p:[11.927,108.461]},"Gần Lengkeng"],
+   ["10:30","di","Hidden Land",{a:"Đường Lâm Văn Thạnh",q:"Hidden Land Đà Lạt",p:[11.929,108.484]}],
+   ["12:00","an","Mì Sườn Xá Xíu",{a:"71 Yersin",q:"Mì Sườn Xá Xíu 71 Yersin Đà Lạt",p:[11.942,108.451]},"Mở 11–18h"],
+   ["12:45","ng","Nhận phòng Lengkeng, nghỉ trưa",LK],
+   ["14:45","cf","Ríu Rít cà phê bên suối",{a:"Sở Lăng, đèo Mimosa",q:"Ríu Rít cà phê bên suối Đà Lạt",p:[11.907,108.471]},"Đóng cửa 17:00",true],
+   ["16:30","cf","Bản Lèo",{a:"Đường Huỳnh Tấn Phát",q:"Bản Lèo Huỳnh Tấn Phát Đà Lạt",p:[11.949,108.491]},"Ngắm hoàng hôn ở Xóm Lèo"],
+   ["18:00","an","Tiệm nướng Trạm Dừng Chill",{a:"111 Huỳnh Tấn Phát",q:"Tiệm Nướng Trạm Dừng Chill Đà Lạt",p:[11.954,108.494]},"Cách Bản Lèo vài phút"],
+   ["19:30","ng","Về Lengkeng, ngủ sớm",LK,"Mai dậy 04:45"],
+ ]},
+ { id:"d4", c:"--d4", title:"Thứ 2 · 16/11", theme:"Săn mây · về TP.HCM",
+   tags:[["east","Từ Lengkeng"],["sleep","Dậy 04:45"]],
+   rows:[
+   ["05:15","sm","Trên Đồi Có Mây",{a:"Cua Cây Mai, Xuân Trường",q:"Trên Đồi Có Mây Đà Lạt",p:[11.941,108.512]},"Mở 5:00. Săn mây, ăn sáng nhẹ và uống cà phê tại quán",true],
+   ["07:45","ng","Về Lengkeng ngủ bù, thu dọn"],
+   ["10:00","ng","Trả phòng",LK],
+   ["10:15","di","Tiệm bánh Thành Hôn",{a:"36/3 Lê Văn Tám",q:"tiệm bánh Thành Hôn Đà Lạt",p:[11.937,108.456]},"Mua quà mang về"],
+   ["11:00","an","Ồh Ngon Quá – bánh cuốn thủ công",{a:"93 Hai Bà Trưng",q:"Tiệm Bánh Cuốn Thủ Công Ồh Ngon Quá Đà Lạt",p:[11.944,108.433]}],
+   ["11:45","ng","Trả xe máy, ra điểm đón xe",null,"Xe về khoảng 12:30"],
+ ]},
+];
+const SPARE=[
+ ["Tiệm nướng lẩu Thời Bình","46 Lê Thánh Tôn","Tiệm nướng lẩu THỜI BÌNH Đà Lạt"],
+ ["Tiệm nướng Màu Vàng","05 Khe Sanh (gần Lengkeng)","TIỆM NƯỚNG MÀU VÀNG Đà Lạt"],
+ ["Nẫu Ơi – lẩu mực lá é","91 Hai Bà Trưng","LẨU MỰC LÁ É NẪU ƠI Đà Lạt"],
+ ["Tiệm bánh canh 2 Chàng","227 Hai Bà Trưng","Tiệm Bánh Canh 2 Chàng Đà Lạt"],
+ ["Ốc Bưu Hẻm","1/1 Phan Đình Phùng","Ốc Bưu Hẻm Đà Lạt"],
+ ["Sữa cô Lan","183 Phan Đình Phùng","Sữa Cô Lan Chính Gốc 185 Phan Đình Phùng Đà Lạt"],
+];
+const wrap=document.getElementById("days");
+for(const d of DAYS){
+  const s=document.createElement("section"); s.className="day"; s.id=d.id;
+  s.innerHTML=`<div class="dayhead"><h2><em style="background:var(${d.c})"></em>${d.title}</h2><span class="theme">${d.theme}</span></div>
+    <div class="tags">${d.tags.map(([c,t])=>`<span class="tag ${c}">${t}</span>`).join("")}</div>`;
+  const ol=document.createElement("ol"); ol.className="tl";
+  for(const [t,k,name,place,note,hl] of d.rows){
+    const li=document.createElement("li"); li.className="k-"+k+(hl?" hl":"");
+    const addr=place?`<div class="addr"><a href="${M(place.q)}" target="_blank" rel="noopener">${place.a}</a></div>`:"";
+    li.innerHTML=`<div class="t">${t}</div><div class="body"><div class="name"><i></i>${name}</div>${addr}${note?`<div class="note">${note}</div>`:""}</div>`;
+    ol.appendChild(li);
+  }
+  s.appendChild(ol); wrap.appendChild(s);
+}
+document.getElementById("spare").innerHTML=SPARE.map(([n,a,q])=>`<a class="chip" href="${M(q)}" target="_blank" rel="noopener">${n} · <span style="color:var(--muted)">${a}</span></a>`).join("");
+
+// Sơ đồ: chiếu lat/lng lên khung 640x300
+(function(){
+  const svg=document.getElementById("map"), NS="http://www.w3.org/2000/svg";
+  const L0=108.330,L1=108.520,A0=11.898,A1=11.990, W=640,H=300,P=18;
+  const k=Math.min((W-2*P)/(L1-L0),(H-2*P)/(A1-A0)*1); // cùng tỉ lệ cho hai trục
+  const ox=(W-(L1-L0)*k)/2, oy=(H-(A1-A0)*k)/2;
+  const X=g=>ox+(g-L0)*k, Y=a=>oy+(A1-a)*k;
+  const el=(n,at)=>{const e=document.createElementNS(NS,n);for(const x in at)e.setAttribute(x,at[x]);svg.appendChild(e);return e};
+  el("rect",{x:0,y:0,width:W,height:H,rx:10,fill:"var(--bg)"});
+  // vùng chữ
+  [["TÀ NUNG",108.352,11.935],["MĂNG LIN",108.392,11.990-.004],["TRUNG TÂM",108.437,11.952],["TRẠI MÁT",108.492,11.962]].forEach(([t,g,a])=>{
+    const e=el("text",{x:X(g),y:Y(a),"text-anchor":"middle",class:"maplbl","letter-spacing":"1.5"}); e.textContent=t;});
+  const seen=new Set();
+  DAYS.forEach(d=>d.rows.forEach(r=>{const p=r[3]&&r[3].p; if(!p||r[3]===COT||r[3]===LK)return;
+    const key=p.join(); const off=seen.has(key)?4:0; seen.add(key);
+    const c=el("circle",{cx:X(p[1])+off,cy:Y(p[0])-off,r:r[1]==="sm"?7:5,fill:`var(${d.c})`,stroke:"var(--card)","stroke-width":1.5});
+    const tt=document.createElementNS(NS,"title"); tt.textContent=`${d.title} · ${r[0]} · ${r[2]}`; c.appendChild(tt);}));
+  [[COT,"Cottage",-1],[LK,"Lengkeng",1]].forEach(([b,n,s])=>{const x=X(b.p[1]),y=Y(b.p[0]);
+    el("rect",{x:x-6,y:y-6,width:12,height:12,rx:2,fill:"var(--fg)"});
+    const t=el("text",{x:x,y:y+20,"text-anchor":"middle",class:"mapbase"}); t.textContent=n;});
+})();
+</script>
